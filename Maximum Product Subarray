@@ -1,0 +1,21 @@
+def solve(n, arr):
+    if not arr:
+        return arr
+    ans = []
+    temp = []
+    ans.append([arr[0], arr[0]])
+        
+    for i in range(1, n):
+        add_ans = []
+        add_ans.append(arr[i] * ans[i - 1][0])
+        add_ans.append(arr[i] * ans[i - 1][1])
+        add_ans.append(arr[i])
+        temp.append(min(add_ans))
+        temp.append(max(add_ans))
+        ans.append(temp)
+        temp = []
+        
+    max_num = ans[0][1]
+    for i in range(1,n):
+        max_num = max(max_num, ans[i][1])
+    return max_num
